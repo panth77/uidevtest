@@ -10,11 +10,12 @@
 	<!-- Templates -->
 	<script id="list-item-template" type="text/template">
 		<img src="<%= lead_photo_image_thumb %>" alt="title" />
-		<a href="#"><%= title %></a>
-		<p class="list-item-categories"><%= categories_name %></p>
-		<br/>
-		<p class="list-item-timestamp">Posted: <% print(pub_date.toString('h:mm tt dddd, MMM. d, yyyy')); %></p>
-		<p class="list-item-timestamp">Updated: <% print(updated.toString('h:mm tt dddd, MMM. d, yyyy')); %></p>
+		<div class="list-text">
+			<a href="#"><%= title %></a>
+			<p class="list-item-categories"><%= categories_name %></p>
+			<p class="list-item-timestamp">Posted: <% print(pub_date.toString('h:mm tt dddd, MMM. d, yyyy')); %></p>
+			<p class="list-item-timestamp">Updated: <% print(updated.toString('h:mm tt dddd, MMM. d, yyyy')); %></p>
+		</div>
 	</script>
 
 	<script id="story-column-view-template" type="text/template">

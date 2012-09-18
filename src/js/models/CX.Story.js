@@ -44,17 +44,17 @@ CX.Story = Backbone.Model.extend({
 			paragraphs = [];
 
 		_.each(rawparagraphs, function(par) {
-			paragraphs.push('<p>'+par.replace('<p>', '')+'</p>');
+			paragraphs.push('<p>'+par.replace(/(<p>|<\/p>)/, '')+'</p>');
 		});
 
 		var perCol = Math.floor(paragraphs.length / this.numColumns);
 
 		for(x = 0; x < this.numColumns; x++) {
 			if(x === this.numColumns-1) { // Last column gets leftovers
-				columns.push(paragraphs.slice(x*perCol));
+				columns[x] = paragraphs.slice(x*perCol).join('');
 			}
 			else {
-				columns.push(paragraphs.slice((x*perCol), (x*perCol)+perCol));
+				columns[x] = paragraphs.slice((x*perCol), (x*perCol)+perCol).join('');
 			}
 		}
 		this.set('columns', columns);

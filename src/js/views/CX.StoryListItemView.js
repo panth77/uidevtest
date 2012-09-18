@@ -51,9 +51,9 @@ CX.StoryListItemView = Backbone.View.extend({
 	 * @author Adam Roberts
 	 * @created 9/14/12
 	 */
-	onClick: function()
+	onClick: function(evt)
 	{
-		console.log('Item selected');
+		evt.preventDefault();
 		this.trigger('itemselected', this, this.model);
 	} // End onClick()
 
