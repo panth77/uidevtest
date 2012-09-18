@@ -223,8 +223,13 @@ p.story-timestamp {
 /*-- Under 480px -------------------------------------------------------------*/
 
 @media (max-width: 480px) {
-  	#container h1 {
-  		color: blue;
+	
+  	p.story-timestamp {
+  		margin-bottom: 5px;
+  	}
+
+  	#social-links {
+  		margin: 5px 0 10px 0;
   	}
 
   	#social-links .icon {

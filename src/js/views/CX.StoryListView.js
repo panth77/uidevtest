@@ -60,7 +60,6 @@ CX.StoryListView = Backbone.View.extend({
 	 */
 	onItemSelected: function(item, model)
 	{
-		console.log('list item selected');
 		this.trigger('itemselected', item, model);
 	} // End onItemSelected()
 

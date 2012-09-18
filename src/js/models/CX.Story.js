@@ -18,8 +18,6 @@ CX.Story = Backbone.Model.extend({
 	 */
 	initialize: function() 
 	{
-		console.log('init');
-
 		this.set('pub_date', Date.parse(this.get('pub_date')));
 		this.set('updated', Date.parse(this.get('updated')));
 		this.calcColumns();

@@ -1,3 +1,9 @@
+/**
+ * The core application
+ *
+ * @author Adam Roberts
+ * @created 9/17/12
+ */
 CX = {};
 CX.Core = (function()
 {
@@ -29,12 +35,11 @@ CX.Core = (function()
             };
         }
 
-		console.log('Application init.');
-
 		stories = new CX.StoryCollection();
 		storyList = new CX.StoryListView({ collection: stories });
 
 		storyList.on('itemselected', _showStory, this);
+		$(window).on('resize', _.debounce(_doLayout, 50));
 
 		stories.fetch({
 			success: function() {
@@ -66,9 +71,7 @@ CX.Core = (function()
 
 		if(params.story) {
 			var id = parseInt(params.story.substr(3), 10);
-			console.log(id);
 			var model = stories.at(id-1);
-			console.log(model);
 			_showStory(null, model);
 		}
 		else {
@@ -109,7 +112,33 @@ CX.Core = (function()
 		else {
 			$('#container').html('<p>Story not found</p>');
 		}
+		_doLayout();
 	} // End _showStory()
+
+//------------------------------------------------------------------------------
+
+	/**
+	 * Handle re-ordering of a few elements on resize that can't be done with
+	 * CSS
+	 * @private
+	 *
+	 * @author Adam Roberts
+	 * @created 9/14/12
+	 */
+	function _doLayout()
+	{
+		var photo = $('#container').children('.lead-photo');
+		if(photo.length && $(window).width() > 480) { // Must be in article view
+			// Wide
+			$('#social-links').insertAfter(photo);
+			$('.story-timestamp').insertAfter($('h1'));
+		}
+		else if(photo.length) {
+			// Narrow
+			$('#social-links').insertBefore(photo);
+			$('.story-timestamp').insertBefore($('h1'));
+		}
+	} // End _doLayout()
 
 //------------------------------------------------------------------------------
 

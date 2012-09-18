@@ -27,22 +27,19 @@
 			Updated: <% print(pub_date.toString('h:mm tt dddd, MMM. d, yyyy')); %> | 
 			Posted: <% print(updated.toString('h:mm tt dddd, MMM. d, yyyy')); %>
 		</p>
-
 		<div class="lead-photo">
 			<div class="image-block">
-				<img src="<%= lead_photo_image_url %>" alt="<%= lead_photo_caption %>" />
+				<img src="<%= lead_photo_image_url %>" alt="<%= lead_photo_caption ? lead_photo_caption : title %>" />
 				<span class="photo-credit"><%= lead_photo_credit %></span>
 			</div>
-			<p class="photo-caption"><%= lead_photo_caption %></p>
+			<p class="photo-caption"><%= lead_photo_caption ? lead_photo_caption : '' %></p>
 		</div>
-
 		<div id="social-links">
 			<a href="#"><div class="icon icon-comment"></div>Comment</a>
 			<a href="#"><div class="icon icon-share"></div>Share</a>
 			<a href="#"><div class="icon icon-favorite"></div>Favorite</a>
 			<a href="#"><div class="icon icon-vote"></div>Vote</a>
 		</div>
-
 		<div id="columns">
 			<p class="byline">By <a href="#"><% print(author.join(', ')); %></a></p>
 			<div class="column"><% print(columns[0]) %></div>
@@ -50,8 +47,7 @@
 		</div>
 	</script>
 
-	<div id="container">
-	</div>
+	<div id="container"></div>
 
 	<!-- Include JS -->
 	<script type="text/javascript" src="../js/jquery-1.8.0.min.js"></script>
