@@ -35,8 +35,46 @@ CX.Core = (function()
 		storyList = new CX.StoryListView({ collection: stories });
 
 		storyList.on('itemselected', _showStory, this);
-		_showStories();
+
+		stories.fetch({
+			success: function() {
+				_parseURL();
+			},
+			error: function() {
+				$('container').html('There ws an error loading news stories.');
+			}
+		});
 	} // End _init()
+
+//------------------------------------------------------------------------------
+
+	/**
+	 * Parses the current URL and determines what action to take
+	 * @private
+	 *
+	 * @author Adam Roberts
+	 * @created 9/14/12
+	 */
+	function _parseURL()
+	{
+		var hashes = window.location.search.substr(1).split('&');
+		var params = {};
+		_.each(hashes, function(hash) {
+			var splithash = hash.split('=');
+			params[splithash[0]] = splithash[1];
+		});
+
+		if(params.story) {
+			var id = parseInt(params.story.substr(3), 10);
+			console.log(id);
+			var model = stories.at(id-1);
+			console.log(model);
+			_showStory(null, model);
+		}
+		else {
+			_showStories();
+		}
+	} // End _parseURL()
 
 //------------------------------------------------------------------------------
 
@@ -50,15 +88,7 @@ CX.Core = (function()
 	function _showStories()
 	{
 		$('container').empty();
-		stories.fetch({
-			success: function() {
-				console.log('success');
-				$('#container').append(storyList.render().el);
-			},
-			error: function() {
-
-			}
-		});
+		$('#container').append(storyList.render().el);
 	} // End _showStories()
 
 //------------------------------------------------------------------------------
@@ -73,7 +103,12 @@ CX.Core = (function()
 	function _showStory(item, model)
 	{
 		$('#container').empty();
-		$('#container').html(_.template($('#story-column-view-template').html(), model.toJSON()));
+		if(model) {
+			$('#container').html(_.template($('#story-column-view-template').html(), model.toJSON()));
+		}
+		else {
+			$('#container').html('<p>Story not found</p>');
+		}
 	} // End _showStory()
 
 //------------------------------------------------------------------------------
