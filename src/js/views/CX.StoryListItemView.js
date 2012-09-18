@@ -8,6 +8,9 @@ CX.StoryListItemView = Backbone.View.extend({
 	tagName: 'li',
 	className: 'list-item',
 	template: _.template($('#list-item-template').html()),
+	events: {
+		'click a': 'onClick'
+	},
 
 //------------------------------------------------------------------------------
 
@@ -37,7 +40,22 @@ CX.StoryListItemView = Backbone.View.extend({
 	{ 
 		this.$el.html(this.template(this.model.toJSON()));
 		return this; 
-	} // End render()
+	}, // End render()
+
+//------------------------------------------------------------------------------
+
+	/**
+	 * Handles when a list item is clicked
+	 * @private
+	 *
+	 * @author Adam Roberts
+	 * @created 9/14/12
+	 */
+	onClick: function()
+	{
+		console.log('Item selected');
+		this.trigger('itemselected', this, this.model);
+	} // End onClick()
 
 //------------------------------------------------------------------------------
 

@@ -9,12 +9,31 @@
 
 	<!-- Templates -->
 	<script id="list-item-template" type="text/template">
-		<img src="<%= lead_photo_image_thumb %>" alt="title"
+		<img src="<%= lead_photo_image_thumb %>" alt="title" />
 		<a href="#"><%= title %></a>
 		<p class="list-item-categories"><%= categories_name %></p>
+		<br/>
 		<p class="list-item-timestamp">Posted: <%= pub_date %></p>
 		<p class="list-item-timestamp">Updated: <%= updated %></p>
 	</script>
+
+	<script id="story-column-view-template" type="text/template">
+		<div class="breadcrumbs"></div>
+		<h1><%= title %></h1>
+		<p class="story-timestamp">Updated: <%= updated %> | Posted: <%= pub_date %></p>
+		<div class="lead-photo">
+			<img src="<%= lead_photo_image_url %>" alt="<%= lead_photo_caption %>" />
+			<span class="photo-credit"><%= lead_photo_credit %></span>
+			<p class="photo-caption"><%= lead_photo_caption %></p>
+		</div>
+		<div class="social-links"></div>
+		<p class="byline"><% author.join(', ') %></p>
+		<div class="column"><%= columns[0] %></section>
+		<div class="column"><%= columns[1] %></section>
+	</script>
+
+	<div id="container">
+	</div>
 
 	<!-- Include JS -->
 	<script type="text/javascript" src="../js/jquery-1.8.0.min.js"></script>

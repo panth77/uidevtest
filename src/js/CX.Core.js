@@ -34,6 +34,7 @@ CX.Core = (function()
 		stories = new CX.StoryCollection();
 		storyList = new CX.StoryListView({ collection: stories });
 
+		storyList.on('itemselected', _showStory, this);
 		_showStories();
 	} // End _init()
 
@@ -48,16 +49,32 @@ CX.Core = (function()
 	 */
 	function _showStories()
 	{
+		$('container').empty();
 		stories.fetch({
 			success: function() {
 				console.log('success');
-				$('body').append(storyList.render().el);
+				$('#container').append(storyList.render().el);
 			},
 			error: function() {
 
 			}
 		});
 	} // End _showStories()
+
+//------------------------------------------------------------------------------
+
+	/**
+	 * Show a single selected story
+	 * @private
+	 *
+	 * @author Adam Roberts
+	 * @created 9/14/12
+	 */
+	function _showStory(item, model)
+	{
+		$('#container').empty();
+		$('#container').html(_.template($('#story-column-view-template').html(), model.toJSON()));
+	} // End _showStory()
 
 //------------------------------------------------------------------------------
 

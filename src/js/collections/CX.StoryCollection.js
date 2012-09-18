@@ -6,6 +6,7 @@
  */
 CX.StoryCollection = Backbone.Collection.extend({
 	url: '../js/uidevtest-data.js',
+	model: CX.Story,
 
 //------------------------------------------------------------------------------
 

@@ -39,6 +39,7 @@ CX.StoryListView = Backbone.View.extend({
 		var buffer = [];
 		this.collection.each(function(story) {
 			item = new CX.StoryListItemView({model: story})
+			item.on('itemselected', this.onItemSelected, this);
 			buffer.push(item.render().el);
 		}, this);
 
@@ -46,7 +47,22 @@ CX.StoryListView = Backbone.View.extend({
 		this.$el.append(buffer);
 
 		return this;
-	} // End render()
+	}, // End render()
+
+//------------------------------------------------------------------------------
+
+	/**
+	 * Handles when a list item is selected
+	 * @private
+	 *
+	 * @author Adam Roberts
+	 * @created 9/14/12
+	 */
+	onItemSelected: function(item, model)
+	{
+		console.log('list item selected');
+		this.trigger('itemselected', item, model);
+	} // End onItemSelected()
 
 //------------------------------------------------------------------------------
 

@@ -1,0 +1,67 @@
+/*-- Global ------------------------------------------------------------------*/
+
+body {
+	font-family: "Arial", sans-serif;
+}
+
+p {
+	padding: 0;
+	margin: 0;
+}
+
+/*-- Story List Items --------------------------------------------------------*/
+
+.list-item {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	clear: left;
+}
+
+.list-item img {
+	float: left;
+	border: 2px solid #fff;
+	margin: 0 10px 20px 0;
+	
+	-moz-box-shadow: 3px 3px 3px #aaa;
+	-webkit-box-shadow: 3px 3px 3px #aaa;
+	box-shadow: 3px 3px 3px #aaa;
+}
+
+.list-item a {
+	color: #036dbe;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 20px;
+	text-decoration: none;
+}
+
+.list-item a:hover {
+	text-decoration: underline;
+}
+
+.list-item .list-item-categories, .list-item .list-item-timestamp {
+	color: #444444;
+	font-size: 14px;
+}
+
+/*-- Story View --------------------------------------------------------------*/
+
+#breadcrumbs {
+
+}
+
+h1 {
+	
+}
+
+.lead-photo {
+	float: left;
+	margin-right: 15px;
+}
+
+.column {
+	float: left;
+	margin-right: 15px;
+	width: 260px;
+}
